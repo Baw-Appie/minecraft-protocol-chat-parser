@@ -137,7 +137,13 @@ function loader (protocolVersion) {
     function parseExtra(extra, useAndChar = false) {
         let char = (useAndChar === true ? '&' : '§')
 
-        if (typeof extra === 'string') extra = JSON.parse(extra)
+        if (typeof extra === 'string') {
+            try {
+                extra = JSON.parse(extra)
+            } catch (e) {
+                return extra
+            }
+        }
 
         delete extra.clickEvent
         delete extra.hoverEvent
