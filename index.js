@@ -145,6 +145,13 @@ function loader (protocolVersion) {
             }
         }
 
+        if (extra.extra) {
+            let parsedExtra = '';
+            for (let extra2 of extra.extra) parsedExtra += parseExtra(extra2, useAndChar)
+            parsedExtra += extra.text
+            return parsedExtra
+        }
+
         delete extra.clickEvent
         delete extra.hoverEvent
 
